@@ -25,8 +25,8 @@ export const Project: React.FC <ProjectPropsType> = (props: ProjectPropsType) =>
                 <S.TitleProject>{props.title}</S.TitleProject>
                 <S.DescriptionProject>{props.description} </S.DescriptionProject>
                 <FlexWrapper gap={"30px"} align={"center"} justify={"center"}>
-                    <S.ProjectButton href={"#"}>Live Preview</S.ProjectButton>
-                    <Link href={"#"}>View Code</Link>
+                    <S.ProjectButton href={"https://github.com/MariaSemenovaDev"}>Live Preview</S.ProjectButton>
+                    <Link href={"https://github.com/MariaSemenovaDev"}>View Code</Link>
                 </FlexWrapper>
             </S.ProjectInfoPreview>
 
