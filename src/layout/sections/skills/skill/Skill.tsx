@@ -6,7 +6,7 @@ import {S} from "../Skills_Styles.ts";
 type SkillPropsType = {
     iconId: string;
     title: string;
-    // description?: string;
+    description?: string;
 
 }
 

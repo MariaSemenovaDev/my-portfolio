@@ -1,4 +1,3 @@
-import {FlexWrapper} from "../../../components/FlexWrapper.ts";
 import {SectionTitle} from "../../../components/SectionTitle.ts";
 import {Skill} from "./skill/Skill";
 import {Container} from "../../../components/Сontainer.ts";

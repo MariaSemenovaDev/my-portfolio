@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import {Theme} from "../../../styles/Theme.tsx";
 
 const SectionSkills = styled.section`
     background-color: #a5bbf8;
