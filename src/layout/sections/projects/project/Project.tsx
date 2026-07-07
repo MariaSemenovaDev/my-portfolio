@@ -1,37 +1,74 @@
-import {FlexWrapper} from "../../../../components/FlexWrapper.ts";
-import {Link} from "../../../../components/Link.ts";
+import {Link as RouterLink} from "react-router-dom";
 import {S} from "../Projects_Styles.ts"
+import {Project} from "../../../../data/projects.ts";
+import {ProjectPreviewMedia} from "../ProjectPreviewMedia.tsx";
 
-
-
-type ProjectPropsType = {
-
-    src: string;
-    title: string,
-    description: string,
-    techStack?: string,
-
+type ProjectCardProps = {
+    project: Project
+    fallbackImage: string
 }
 
+export const ProjectCard: React.FC<ProjectCardProps> = ({project, fallbackImage}) => {
+    const primaryGithubUrl = project.githubUrls?.[0]?.url
+    const previewSrc = project.screenshots[0]?.src
+    const highlights = project.highlights.slice(0, 3)
 
-export const Project: React.FC <ProjectPropsType> = (props: ProjectPropsType) => {
     return (
-        <S.Project>
+        <S.ProjectCard>
             <S.ProjectImagePreview>
-                <S.PreviewImg src={props.src} />
-                <S.ProjectButton>View Project</S.ProjectButton>
+                <ProjectPreviewMedia
+                    src={previewSrc}
+                    alt={project.screenshots[0]?.alt || `${project.title} preview`}
+                    fallbackImage={fallbackImage}
+                />
+                <S.PreviewOverlay>
+                    <S.ProjectButton as={RouterLink} to={`/projects/${project.id}`}>
+                        Details
+                    </S.ProjectButton>
+                </S.PreviewOverlay>
             </S.ProjectImagePreview>
-            <S.ProjectInfoPreview>
-                <S.TitleProject>{props.title}</S.TitleProject>
-                <S.DescriptionProject>{props.description} </S.DescriptionProject>
-                <FlexWrapper gap={"30px"} align={"center"} justify={"center"}>
-                    <S.ProjectButton href={"https://github.com/MariaSemenovaDev"}>Live Preview</S.ProjectButton>
-                    <Link href={"https://github.com/MariaSemenovaDev"}>View Code</Link>
-                </FlexWrapper>
-            </S.ProjectInfoPreview>
 
-        </S.Project>
+            <S.ProjectInfoPreview>
+                <S.TitleProject>{project.title}</S.TitleProject>
+
+                <S.TagsList>
+                    {project.type.map(typeItem => (
+                        <S.Tag key={typeItem}>{typeItem}</S.Tag>
+                    ))}
+                </S.TagsList>
+
+                <S.DescriptionProject>{project.description}</S.DescriptionProject>
+
+                {project.stack.length > 0 && (
+                    <S.StackList>
+                        {project.stack.map(stackItem => (
+                            <S.StackChip key={stackItem}>{stackItem}</S.StackChip>
+                        ))}
+                    </S.StackList>
+                )}
+
+                <S.HighlightList>
+                    {highlights.map(highlight => (
+                        <S.HighlightItem key={highlight}>{highlight}</S.HighlightItem>
+                    ))}
+                </S.HighlightList>
+
+                <S.ActionsRow>
+                    <S.ProjectButton as={RouterLink} to={`/projects/${project.id}`}>
+                        Details
+                    </S.ProjectButton>
+                    {project.liveUrl && (
+                        <S.ProjectButton href={project.liveUrl} target="_blank" rel="noreferrer">
+                            Live
+                        </S.ProjectButton>
+                    )}
+                    {primaryGithubUrl && (
+                        <S.SecondaryButton href={primaryGithubUrl} target="_blank" rel="noreferrer">
+                            GitHub
+                        </S.SecondaryButton>
+                    )}
+                </S.ActionsRow>
+            </S.ProjectInfoPreview>
+        </S.ProjectCard>
     );
 };
-
-

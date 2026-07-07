@@ -34,7 +34,9 @@ export const Main: React.FC = () => {
                                 />
                             </S.MainTitle>
 
-                            <S.AboutMe>Passionate front-end developer with a flair for crafting engaging user interfaces that provide users with an intuitive and efficient experience. Committed to writing clean, scalable code and staying abreast of the latest technologies in web development</S.AboutMe>
+                            <S.AboutMe>
+                                Frontend Developer specializing in React, Next.js and TypeScript. I build product-oriented web interfaces with authentication, forms, user profiles, feeds, admin panels, CMS-driven content and API integrations. I focus on clean component architecture, responsive layouts, typed data flow and maintainable UI that solves real user tasks.
+                            </S.AboutMe>
                             <S.ButtonWrapper align="center" justify="center"  gap="32px">
                                 <S.Button href="">See Projects</S.Button>
                                 <S.Download href="">Download Resume</S.Download>
